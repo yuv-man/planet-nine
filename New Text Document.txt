@@ -1,0 +1,18 @@
+key notes:
+
+1. Divided the app to two main components, userCard, userList
+2. Separated context and api to different files, for more readability and performance.
+3. While loading the app userList create api call to get users.
+4. Added to userList loading, error and no users found options to show.
+5. using useMemo on the api calls so if no changes happen it wont rerender
+6. Added to userCard a toast to show if the user is in the failed list.
+8. favoritesUsers is an object, which make it better to handle the favorites, also in performance.
+9. user getAllSettled to get all the users and handle the errors, to run all requests in parallel.
+10. save isFavorite locally to make optimistic ui and update it after the api call.
+
+
+running the app:
+1. npm install
+2. npm  run start
+
+
