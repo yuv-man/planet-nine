@@ -1,17 +1,44 @@
 .user-list {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 24px;
+  gap: 24px 24px;
   padding: 16px;
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
+
+  &.error {
+    color: #ff4444;
+    text-align: center;
+    padding: 20px;
+  }
+
+  .search-input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+
+    &:focus {
+      outline: none;
+      border-color: #007bff;
+      box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
+    }
+  }
+
+  p {
+    text-align: center;
+    color: #666;
+    font-size: 16px;
+    margin: 20px 0;
+  }
 }
 
-// Optional: Add different gap sizes for different screen sizes
 @media (max-width: 768px) {
   .user-list {
-    gap: 16px;
+    gap: 16px 16px;
     padding: 12px;
   }
 }

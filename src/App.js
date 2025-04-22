@@ -1,21 +1,14 @@
-import React, { useState, useEffect } from 'react';
-
+import React from 'react';
+import UserList from './components/UserList';
 import './App.css';
-import UserCard from './components/UserCard';
-import { userAPI } from './utils/api';
-
+import { FavoriteUsersProvider } from './utils/context';
 function App() {
-  const [users, setUsers] = useState([]);
-
-  useEffect(() => {
-    userAPI.getUsers().then(setUsers);
-  }, []);
-
+  
   return (
     <div className="App">
-      {users.map((user) => (
-        <UserCard key={user.id} user={user} />
-      ))}
+      <FavoriteUsersProvider>
+        <UserList />
+      </FavoriteUsersProvider>
     </div>
   );
 }
