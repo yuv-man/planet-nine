@@ -1,0 +1,51 @@
+.user-card {
+  display: flex;
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: white;
+  max-width: 400px;
+  border: 1px solid #ccc;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+  .avatar {
+    margin-right: 1rem;
+  }
+
+  .avatar img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+
+  .info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+  .name {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0 0 0.5rem 0;
+    font-size: 1.25rem;
+  }
+
+  .email {
+    margin: 0.25rem 0;
+    color: #666;
+  }
+
+  .phone {
+    margin: 0.25rem 0;
+    color: #666;
+  }
+
+  .address {
+    margin: 0.25rem 0;
+    color: #666;
+  }
+}
+
