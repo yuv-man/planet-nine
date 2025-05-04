@@ -27,11 +27,6 @@ const userClient = axios.create({
     timeout: 10000,
   });
 
-const avatarClient = axios.create({
-    baseURL: AVATAR_URL,
-    timeout: 10000,
-});
-
 export const userAPI = {
     getAllUsers: async (): Promise<User[]> => {
         try {
