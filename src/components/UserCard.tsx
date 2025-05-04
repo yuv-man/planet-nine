@@ -3,11 +3,12 @@ import '../styles/UserCard.scss';
 import { userAPI } from '../utils/api';
 import { useFavoriteUsers } from '../utils/context';
 import { toast } from 'react-hot-toast';
+import type { User } from '../types/types';
 
-const UserCard = ({ user }) => {
+const UserCard: React.FC<{ user: User }> = ({ user }) => {
 
-    const [avatar, setAvatar] = useState(null);
-    const [isFavorite, setIsFavorite] = useState(false);
+    const [avatar, setAvatar] = useState<string | undefined>(undefined);
+    const [isFavorite, setIsFavorite] = useState<boolean>(false);
     const { 
         addFavorite, 
         removeFavorite, 
@@ -19,20 +20,19 @@ const UserCard = ({ user }) => {
         userAPI.getAvatar(user.id).then(setAvatar);
     }, [user.id]);
 
-
     useEffect(() => {
         setIsFavorite(isUserFavorite(user.id));
     }, [user.id, isUserFavorite]);
 
     useEffect(() => {
-        if (summary?.failedUsers?.some(failedUser => failedUser.id === user.id)) {
+        if (summary?.failedUsers?.some((failedUser: User) => failedUser.id === user.id)) {
             toast.error(`Failed to update favorite status for ${user.name}`);
         }
     }, [summary, user.id, user.name]);
 
-    const addressFormatted = `${user.address.street}, ${user.address.suite}, ${user.address.city}, ${user.address.zipcode}`;
+    const addressFormatted: string = `${user.address.street}, ${user.address.suite}, ${user.address.city}, ${user.address.zipcode}`;
 
-    const handleFavoriteClick = async () => {
+    const handleFavoriteClick: () => Promise<void> = async () => {
         const newFavoriteState = !isFavorite;
         setIsFavorite(newFavoriteState); 
 

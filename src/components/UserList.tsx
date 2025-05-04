@@ -3,26 +3,27 @@ import UserCard from './UserCard';
 import '../styles/UserList.scss';
 import { userAPI } from '../utils/api';
 import { useFavoriteUsers } from '../utils/context';
+import type { User } from '../types/types';
 
-const UserList = () => {
-  const [users, setUsers] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-  const [searchTerm, setSearchTerm] = useState('');
+const UserList: React.FC = () => {
+  const [users, setUsers] = useState<User[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
+  const [searchTerm, setSearchTerm] = useState<string>('');
   const { summary } = useFavoriteUsers();
 
   const fetchUsers = useMemo(
-    () => userAPI.getUsers(), []);
+    () => userAPI.getAllUsers(), []);
 
   useEffect(() => {
     fetchUsers
       .then(data => {
         setUsers(data);
-        setLoading(false);
+        setIsLoading(false);
       })
       .catch(err => {
         setError(err.message);
-        setLoading(false);
+        setIsLoading(false);
       });
   }, [fetchUsers]);
 
@@ -33,7 +34,7 @@ const UserList = () => {
     [users, searchTerm]
   );
 
-  if (loading) {
+  if (isLoading) {
     return <div className="user-list">Loading...</div>;
   }
 
@@ -65,7 +66,7 @@ const UserList = () => {
             <p>Total Favorites: {summary.totalFavorites}</p>
             <p>Success: {summary.successCount}</p>
             <p>Failed: {summary.failedCount}</p>
-            <p>Failed Users: {summary?.failedUsers?.length > 0 ? summary.failedUsers.map(failedUser => failedUser.name).join(', ') : 'None'}</p>
+            <p>Failed Users: {summary?.failedUsers?.length > 0 ? summary.failedUsers.map((failedUser: User) => failedUser.name).join(', ') : 'None'}</p>
           </div>
         )}
     </div>
